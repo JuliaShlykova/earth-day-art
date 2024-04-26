@@ -1,0 +1,295 @@
+:root {
+  --size: 200px;
+  --ocean-color: rgb(20, 58, 133);
+  --continents-color: rgb(56, 100, 28);
+  --animation-time: 10s;
+  --fire-ocean-color: rgb(136, 58, 31);
+  --fire-continents-color: rgb(136, 94, 31);
+  --star-color: white;
+  --ufo-color: rgb(210, 212, 218);
+  --ufo-color-dark: rgb(186, 188, 193);
+  --ufo-color-border: rgb(53, 53, 55);
+  --ufo-size: 500px;
+  --yellow-color: rgb(145, 224, 246);
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.container {
+  background: radial-gradient(circle at 14% 53%, var(--star-color) 0, transparent 3px),
+    radial-gradient(circle at 8% 19%, var(--star-color) 0, transparent 2px),
+    radial-gradient(circle at 88% 38%, var(--star-color) 0, transparent 2px),
+    radial-gradient(circle at 62% 61%, var(--star-color) 0, transparent 1px),
+    radial-gradient(circle at 64% 59%, var(--star-color) 0, transparent 2px),
+    radial-gradient(circle at 38% 14%, var(--star-color) 0, transparent 2px),
+    radial-gradient(circle at 62% 32%, var(--star-color) 0, transparent 3px),
+    radial-gradient(circle at 9% 69%, var(--star-color) 0, transparent 2px),
+    radial-gradient(circle at 74% 58%, var(--star-color) 0, transparent 2px),
+    radial-gradient(circle at 95% 80%, var(--star-color) 0, transparent 2px),
+              black;
+  background-size: 200px 200px;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.sea {
+  width: 100vw;
+  height: 50vh;
+  background: linear-gradient(to bottom, transparent, gray);
+  z-index: 999;
+}
+
+main {
+  width: var(--size);
+  height: 50vh;
+  position: relative;
+}
+
+div.container-health, div.container-disaster {
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.container-disaster {
+  background-color: var(--fire-ocean-color);
+  box-shadow: 0 0 100px var(--fire-ocean-color);
+  animation: up-down var(--animation-time) linear infinite alternate-reverse;
+}
+
+div.container-disaster svg path {
+  fill: var(--fire-continents-color);
+}
+
+div.container-health {
+  background-color: var(--ocean-color);
+  box-shadow: 0 0 100px var(--ocean-color);
+  animation: up-down var(--animation-time) linear infinite alternate;
+}
+
+@keyframes up-down {
+  0% {
+    transform: translateY(20px);
+  }
+
+  20% {
+    transform: translateY(20px);
+  }
+
+  80% {
+    opacity: 1;
+    transform: translateY(calc(100vh - var(--size) - 20px));
+  }
+
+  100% {
+    opacity: 0.4;
+    transform: translateY(calc(100vh - var(--size) - 20px));
+
+  }
+
+}
+
+.ufo {
+  offset-path: polygon(
+    50% 110px,
+    100% 38%, 
+    75% 46%,
+    35% 47%, 
+    0% 38%);
+  offset-rotate: 0deg;
+  transform: scale(0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--ufo-size);
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 300px;
+
+  animation: random-move 20s infinite;
+}
+
+@keyframes random-move {
+  10% {
+    offset-distance: 0%;
+    transform: scale(0);
+  }
+
+  30% {
+    transform: scale(0.2);
+
+  }
+  50% {
+    transform: scale(0.1);
+  }
+  70% {
+    transform: scale(0.5);
+  }
+
+  100% {
+    offset-distance: 100%;
+  }
+
+}
+
+.ufo .body {
+  position: absolute;
+  width: 125px;
+  height: 125px;
+  background: linear-gradient(to bottom, var(--ufo-color), var(--ufo-color) 80%, var(--ufo-color-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotateX(30deg);
+  border-radius: 50% 50% 40% 40%;
+  overflow: hidden;
+}
+
+.ufo .body .horns {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  --size: 20px;
+}
+
+.ufo .body .horns>* {
+  transform: translateY(-40px);
+}
+
+.ufo .body .horns>*:first-child {
+  border-top: var(--size) solid var(--ufo-color-border);
+  border-right: var(--size) solid var(--ufo-color-border);
+  border-bottom: var(--size) solid var(--ufo-color-border);
+  border-top-left-radius: var(--size);
+  border-bottom-left-radius: var(--size);
+}
+
+.ufo .body .horns>*:last-child {
+  border-top: var(--size) solid var(--ufo-color-border);
+  border-left: var(--size) solid var(--ufo-color-border);
+  border-bottom: var(--size) solid var(--ufo-color-border);
+  border-top-right-radius: var(--size);
+  border-bottom-right-radius: var(--size);
+}
+
+.ufo .body .window {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 60%;
+  border-radius: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: end;
+  gap: 1%;
+  box-shadow: 0 20px 0 0 var(--ufo-color-border);
+}
+
+.ufo .body .window>* {
+  transform: translateY(15px);
+  background-color: red;
+  width: 10%;
+  height: 15%;
+}
+
+.ufo .body .window>*:first-child {
+  animation: blick 5s infinite;
+}
+
+.ufo .body .window>*:last-child {
+  animation: blick 2s infinite;
+}
+
+@keyframes blick {
+  44% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 0;
+  }
+  55% {
+    opacity: 0;
+  }
+  56% {
+    opacity: 1;
+  }
+}
+
+.ufo .orbit {
+  position: absolute;
+  bottom: 0;
+  width: var(--ufo-size);
+  height: 125px;
+  background-color: var(--ufo-color);
+  overflow: hidden;
+  border-radius: 50% 50% 40% 40%;
+  display: flex;
+  justify-content: space-around;
+  align-items: end;
+  transform: rotateX(30deg);
+  box-shadow: 0 62.5px 125px 62.5px var(--yellow-color),
+              inset 0 -20px 0 0 var(--ufo-color-border);
+
+}
+
+.decor {
+  background-color: var(--ufo-color);
+  width: 10px;
+  height: 80px;
+}
+
+.decor:nth-child(n+4) {
+  transform: skewX(10deg);
+}
+
+.decor:nth-child(-n + 4) {
+  transform: skewX(-10deg);
+}
+
+div.container-health svg path {
+  fill: var(--continents-color);
+}
+
+.earth-map {
+  width: 400px;
+  flex-shrink: 0;
+  animation: moving 20s infinite linear;
+}
+
+@keyframes moving {
+  0% {
+    transform: translateX(-200px);
+  }
+  100% {
+    transform: translateX(var(--size))
+  }
+}
+
+.shadow {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: inset 40px 0 30px black;
+}
