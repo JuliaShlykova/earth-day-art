@@ -1,7 +1,7 @@
 :root {
   --size: 200px;
-  --ocean-color: rgb(20, 58, 133);
-  --continents-color: rgb(56, 100, 28);
+  --ocean-color: #063970;
+  --continents-color: #397006;
   --animation-time: 10s;
   --fire-ocean-color: rgb(136, 58, 31);
   --fire-continents-color: rgb(136, 94, 31);
