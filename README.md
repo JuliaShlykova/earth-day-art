@@ -1,6 +1,9 @@
 # CSS Art: Earth Day
 This project is dedicated to Earth Day with intention to participate in [dev challenge](https://dev.to/devteam/join-us-for-the-next-frontend-challenge-earth-day-edition-52e4). 
 
+## Demo
+To see the animation, please [visit](https://juliashlykova.github.io/earth-day-art).
+
 ## Assets
 
 - svg of earth map was gotten from [fla shop](https://www.fla-shop.com);
